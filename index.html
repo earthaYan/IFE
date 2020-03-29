@@ -1,0 +1,47 @@
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div class="content">
+    <div class="title">前端学院</div>
+    <div class="line1" id="line"></div>
+    <button onclick="toggleClass()">切换样式</button>
+  </div>
+  <a href="index2.html">进入下一个任务</a>
+  <style>
+    .content{
+      width:80px;
+      font-weight:bold;
+      text-align:center;
+    }
+    #line{
+    height:10px;
+      background-color:red;
+      margin:10px auto;
+      transition:width 2s;
+    }
+    .line1{
+      width:70px;
+    }
+    .line2{
+      width:0;
+    }
+    
+  </style>
+  <script>
+    function toggleClass(){
+      var line=document.querySelector('#line')
+      if(line.className=='line1'){
+          line.className='line2'
+      }else{
+          line.className='line1'
+      }
+    }
+  </script>
+</body>
+</html>
+
+
