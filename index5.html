@@ -1,0 +1,182 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class="container">
+        <!-- 臉部 -->
+        <div class="face">
+            <div class="hair"></div>
+            <div class="eye-wrap">
+                <div class="eye left">
+                    <div class="eye-circle">
+                        <div class="eye-core"></div>
+                    </div>
+                    <div class="eye-bottom"></div>
+                    <div class="face-red"></div>
+                </div>
+                <div class="eye right">
+                    <div class="eye-circle">
+                        <div class="eye-core"></div>
+                    </div>
+                    <div class="eye-bottom"></div>
+                    <div class="face-red"></div>
+                </div>
+            </div>
+            <div class="nose"></div>
+            <div class="mouth-wrap">
+                <div class="mouth left"></div>
+                <div class="mouth right"></div>
+            </div>
+        </div>
+        <!-- 耳朵 -->
+        <div class="ear-wrap">
+            <div class="ear left"></div>
+            <div class="ear right"></div>
+        </div>
+    </div>
+    <style>
+        .face{
+            width: 350px;
+            height: 250px;
+            background-color:#fbf8f1;
+            border: 2px solid #3f200b;
+            z-index: 10;
+            border-radius: 50% 50% 30% 30%;
+            position: absolute;
+            left: 50%;
+            top: 40px;
+            margin-left: -175px;
+            overflow: hidden;
+        }
+        .ear-wrap{
+            width: 300px;
+            position: absolute;
+            left: 50%;
+            margin-left: -150px;
+            margin-top: 20px;
+        }
+        .ear{
+            position: absolute;
+            width: 80px;
+            height: 100px;
+            border: 2px solid #000;
+            background-color: #fbf8f1;
+            border-radius: 100% 10% 50% 0;
+        }
+        .ear-wrap .right{
+            left: auto;
+            right: 0;
+            background-color: #f1ac2b;
+            border-radius: 10% 100% 0% 50%;
+        }
+        .hair{
+            position: absolute;
+            left: 50%;
+            margin-left: 50px;
+            margin-top: -40px;
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            background-color: #f3b32e;
+            
+        }
+        .eye-wrap{
+            position: absolute;
+            width: 280px;
+            height: 70px;
+            left: 50%;
+            margin-left: -140px;
+            top: 90px;
+            overflow: hidden;
+        }
+        .eye{
+            height: 100px;
+            width: 100px;
+            position: absolute;
+        }
+        .eye-wrap .right{
+            position: absolute;
+            left: auto;
+            right: 0;
+        }
+        .eye-wrap .eye-circle{
+            width: 100px;
+            height: 80px;
+            border: 2px solid #482507;
+            position: absolute;
+            background-color: #fff;
+            box-sizing: border-box;
+            border-radius: 50% 50% 40% 40%;
+        }
+        .eye-core{
+            width: 46px;
+            height: 55px;
+            background-color: #000;
+            position: absolute;
+            left: 50%;
+            margin-left:-23px;
+            border-radius: 50%;
+        }
+        .eye-bottom{
+            width: 100px;
+            height: 50px;
+            border: 2px solid #46240b;
+            background-color: #f6f7f2;
+            position: absolute;
+            border-radius: 40% 40% 50% 50%;
+            margin-top: 48px;
+        }
+        .face-red{
+            width: 70px;
+            height: 20px;
+            position: absolute;
+            border-radius: 50%;
+            background-color: #e85a5e;
+            opacity: 0.0;
+            position: absolute;
+            left: 18px;
+            top: 45px;
+        }
+        .nose{
+            width: 20px;
+            height: 10px;
+            position: absolute;
+            top: 154px;
+            left: 50%;
+            margin-left: -10px;
+            border-bottom: 8px solid #000;
+            border-radius: 0 0 50% 50%;
+        }
+        .mouth-wrap{
+            width: 80px;
+            height: 20px;
+            position: absolute;
+            top: 168px;
+            left: 50%;
+            margin-left: -40px;
+            overflow: hidden;
+        }
+        .mouth{
+            width: 40px;
+            height: 40px;
+            border-bottom: 4px solid #000;
+            border-right: 4px solid #000;
+            position: absolute;
+            left: 0;
+            margin-top: -26px;
+            border-radius: 0% 40% 50% 20%;
+        }
+        .mouth.right{
+            border-right: none;
+            border-left: 4px solid #000;
+            position: absolute;
+            left: auto;
+            right: 0;
+            border-radius: 40% 0% 20% 50%;
+        }
+    </style>
+</body>
+</html>
