@@ -1,0 +1,53 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class="container">
+        <div class="face"></div>
+        <div class="ear-wrap">
+            <div class="ear left"></div>
+            <div class="ear right"></div>
+        </div>
+    </div>
+    <style>
+        .container{
+            position: relative;
+            border: 1px solid blue;
+        }
+        .face{
+            width: 240px;
+            height: 170px;
+            border: 1px solid #3f200b;
+            background-color: #fbf8b1;
+            border-radius: 50% 50% 40% 40%;
+            position: absolute;
+            left: 50%;
+            top: 26px;
+            margin-left: -120px;
+        }
+        .ear-wrap{
+            width: 200px;
+            height: 50px;
+            border: 2px solid red;
+            position: absolute;
+            left: 50%;
+            margin-left: -100px;
+            top: 20px;
+        }
+        .ear{
+            width: 54px;
+            height: 50px;
+            border: 1px solid #000;
+            position: absolute;
+            left: 0;
+        }
+        .ear.right{
+            position: absolute;
+            left: auto;
+        }
+    </style>
+</body>
+</html>
