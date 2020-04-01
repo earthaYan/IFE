@@ -1,0 +1,80 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>旋转木马</title>
+</head>
+<body>
+    <div id="stage" class="stage_area">
+        <div id="container" class="container">
+
+        </div>
+    </div>
+    <style>
+        .stage_area{
+            width: 900px;
+            min-height:100px;
+            margin: 0 auto;
+            padding: 100px 50px;
+            position: relative;
+            background-color: #f0f0f0;
+            box-shadow: 0 0 3px 0px rgba(0,0,0,.35);
+            perspective: 800px;
+            -webkit-perspective: 800px;
+            -moz-perspective: 800px;
+            -ms-perspective: 800px;
+        }
+        .container{
+            width: 128px;
+            height: 100px;
+            position: absolute;
+            left: 50%;
+            margin-left: -64px;
+            transform-style: preserve-3d;
+            -webkit-transform-style: preserve-3d;
+            transition: transform 1.5s;
+            -webkit-transition: -webkit-transform 1.5s;
+            -moz-transition: -moz-transform 1.5s;
+            -ms-transition: -ms-transform 1.5s;
+            -o-transition: -o-transform 1.5s;
+        }
+        .piece{
+            width: 128px;
+            position: absolute;
+            bottom: 0;
+            box-shadow: 0 1px 3px rgba(0,0,0,.5);
+            backface-visibility: visible;
+            -webkit-backface-visibility: visible;
+        }
+    </style>
+    <script>
+        (function(){
+            var $=function(selector){
+                return document.querySelector(selector)
+            },$$=function(selector){
+                return document.querySelectorAll(selector)
+            }
+            var transform=function(ele,value,key){
+                key=key||'Transform';
+                ['Moz','O','Ms','Webkit',''].forEach(function(prefix){
+                    ele.style[prefix+key]=value
+                })
+                return ele
+            }
+            var htmlPic="",arrPic=[1, 8, 3, 4, 6, 7, 10, 13, 15],rotate=360/arrPic.length,
+                        transZ=64/Math.tan(20/180*Math.PI),indexPiece=0
+            arrPic.forEach(function(item,index){
+                htmlPic=htmlPic+'<img class="piece" id="piece'+item+'" src="./img/mm/mm'+item+'.jpg"/>'
+            })
+            var eleStage=$("#stage"),eleContainer=$("#container")
+            eleContainer.innerHTML=htmlPic
+            arrPic.forEach(function(item,index){
+                transform($("#piece"+item),'rotateY('+(rotate*index)+'deg) translateZ('+(transZ+20)+'px)')
+            })
+            eleContainer.addEventListener('click',function(){
+                transform(this,'rotateY('+(-1*rotate* ++indexPiece)+'deg)')
+            },false)
+        })()
+    </script>
+</body>
+</html>
