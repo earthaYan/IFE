@@ -1,0 +1,51 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <canvas id="canvas" ></canvas>
+    <h1>IFE作业目录</h1>
+    <ul>
+        <li><a href="index.html">任务1：使用transition切换样式</a></li>
+        <li><a href="index2.html">任务2：transform的2D转换</a></li>
+        <li><a href="index3.html">任务3：小猫微笑</a></li>
+        <li><a href="index4.html">任务4：3D卡牌转换</a></li>
+        <li><a href="index5.html">纯CSS实现小猫画像</a></li>
+        <li><a href="index6.html">纯CSS实现小猫画像2</a></li>
+        <li><a href="index7.html">纯CSS实现照片走马灯透视效果</a></li>
+        <li><a href="index7_another.html">旋转木马</a></li>
+        <li><a href="index8.html">任务5：纯CSS实现绕中心轴旋转的透明立方体-3D转换</a></li>
+        <li><a href="index9.html">任务6：纯CSS实现Slider-animation/target伪类</a></li>
+    </ul>
+    <style>
+        body{
+            background: #060e1b;
+            overflow: hidden;
+        }
+        h1{
+            text-align: center;
+        } 
+        #canvas{
+            position: absolute;
+        }
+    </style>
+    <script>
+        // 创建canvas上下文对象,设置画布宽高为浏览器宽和高
+        var canvas=document.getElementById("canvas"),
+            ctx=canvas.getContext('2d'),
+            w=canvas.width=window.innerWidth,
+            h=canvas.height=window.innerHeight;
+        //定义星空基本变量
+        var hue=217,stars=[],count=0,maxStars=1200
+        var canvas2=document.createElement("canvas"),
+            ctx2=canvas2.getContext('2d');
+        canvas2.width=100;
+        canvas2.height=100;
+        var half=canvas2.width/2,
+            gradient2=
+
+    </script>
+</body>
+</html>
