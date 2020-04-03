@@ -6,29 +6,36 @@
 </head>
 <body>
     <canvas id="canvas" ></canvas>
-    <h1>IFE作业目录</h1>
-    <ul>
-        <li><a href="index.html">任务1：使用transition切换样式</a></li>
-        <li><a href="index2.html">任务2：transform的2D转换</a></li>
-        <li><a href="index3.html">任务3：小猫微笑</a></li>
-        <li><a href="index4.html">任务4：3D卡牌转换</a></li>
-        <li><a href="index5.html">纯CSS实现小猫画像</a></li>
-        <li><a href="index6.html">纯CSS实现小猫画像2</a></li>
-        <li><a href="index7.html">纯CSS实现照片走马灯透视效果</a></li>
-        <li><a href="index7_another.html">旋转木马</a></li>
-        <li><a href="index8.html">任务5：纯CSS实现绕中心轴旋转的透明立方体-3D转换</a></li>
-        <li><a href="index9.html">任务6：纯CSS实现Slider-animation/target伪类</a></li>
-    </ul>
+    <div class="container">
+        <h1>IFE作业目录</h1>
+        <ul>
+            <li><a href="index.html">任务1：使用transition切换样式</a></li>
+            <li><a href="index2.html">任务2：transform的2D转换</a></li>
+            <li><a href="index3.html">任务3：小猫微笑</a></li>
+            <li><a href="index4.html">任务4：3D卡牌转换</a></li>
+            <li><a href="index5.html">纯CSS实现小猫画像</a></li>
+            <li><a href="index6.html">纯CSS实现小猫画像2</a></li>
+            <li><a href="index7.html">纯CSS实现照片走马灯透视效果</a></li>
+            <li><a href="index7_another.html">旋转木马</a></li>
+            <li><a href="index8.html">任务5：纯CSS实现绕中心轴旋转的透明立方体-3D转换</a></li>
+            <li><a href="index9.html">任务6：纯CSS实现Slider-animation/target伪类</a></li>
+        </ul>
+    </div>
+
     <style>
         body{
             background: #060e1b;
             overflow: hidden;
         }
+        .container{
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+        }
         h1{
             text-align: center;
-        } 
-        #canvas{
-            position: absolute;
+            color: #fff;
         }
     </style>
     <script>
@@ -38,14 +45,95 @@
             w=canvas.width=window.innerWidth,
             h=canvas.height=window.innerHeight;
         //定义星空基本变量
+        // hue定義色彩模式HSL(色相/顏色、饱和度0-1、亮度0-1)
         var hue=217,stars=[],count=0,maxStars=1200
         var canvas2=document.createElement("canvas"),
             ctx2=canvas2.getContext('2d');
         canvas2.width=100;
         canvas2.height=100;
         var half=canvas2.width/2,
-            gradient2=
+            // 根据参数确定两个圆的坐标，放射性渐变(startX,startY,startRadius,endX,endY,endRadius)
+            gradient2=ctx2.createRadialGradient(half,half,0,half,half,half);
+        // 断点到渐变-偏移值0-1之间，
+        gradient2.addColorStop(0.025,'#fff');
+        gradient2.addColorStop(0.1,'hsl('+hue+',61%,33%)');
+        gradient2.addColorStop(0.25,'hsl('+hue+',64%,6%)')
+        gradient2.addColorStop(1,'transparent');
+        // 描述颜色和样式 color/gradient/pattern
+        ctx2.fillStyle=gradient2;
+        // 通过清空子路径列表开始一个新路径的方法
+        ctx2.beginPath();
+        // 绘制圆弧路径 (圆心x,圆心y,radius,圆弧起始点x,圆弧终点,方向true逆时针false顺时针),顺时针为正方向
+        ctx2.arc(half,half,half,0,Math.PI*2);
+        ctx2.fill();
+        var Star=function(){
+            // 軌道半徑
+            this.orbitRadius=random(maxOrbit(w,h));
+            // 星星半径
+            this.radius=random(60,this.orbitRadius)/12;
+            // 轨道坐标
+            this.orbitX=w/2;
+            this.orbitY=h/2;
+            this.timePassed=random(0,maxStars);
+            // 转速
+            this.speed=random(this.orbitRadius)/50000;
+            // 透明度
+            this.alpha=random(2,10)/10;
+            // 新建star队形下标
+            count++;
+            stars[count]=this
+        }
+        Star.prototype.draw=function(){
+            var x=Math.sin(this.timePassed)*this.orbitRadius+this.orbitX,
+                y=Math.cos(this.timePassed)*this.orbitRadius+this.orbitY,
+                twinkle=random(10);
+            if(twinkle===1&&this.alpha>0){
+                this.alpha-=0.05;
+            }else if(twinkle===2&&this.alpha<1){
+                this.alpha+=0.5;
+            }
+            ctx.globalAlpha=this.alpha;
+            // (圖片源,裁剪圖片距離左上方的x軸坐標,y軸坐標,s寬，s高，目標canvas的左上角x軸坐標，y坐標，d寬，d高)
+            ctx.drawImage(canvas2,x-this.radius/2,y-this.radius/2,this.radius,this.radius);
+            this.timePassed+=this.speed
+        }
+        for(var i=0;i<maxStars;i++){
+            new Star()
+        }
+        animation()
+        function random(min,max){
+            if(arguments.length<2){
+                max=min
+                min=0
+            }
+            if(min>max){
+                var  hold=max
+                max=min
+                min=hold
+            }
+            return Math.floor(Math.random()*(max-min+1))+min
+        }
+        function maxOrbit(x,y){
+            var max=Math.max(x,y),
+                diameter=Math.round(Math.sqrt(max*max+max*max));
+            // 获得半径
+            return diameter/2;
+        }
 
+        function animation(){
+            // 合成操作
+            ctx.globalCompositeOperation='source-over';
+            ctx.globalAlpha=0.8;
+            ctx.fillStyle='hsl('+hue+',64%,6%,1)';
+            ctx.fillRect(0,0,w,h);
+            ctx.globalCompositeOperation='lighter';
+            for(var i=1, l=stars.length;i<l;i++){
+                stars[i].draw();
+            }
+            window.requestAnimationFrame(animation);
+
+        }
+        
     </script>
 </body>
 </html>
