@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html>
     <head>
@@ -72,31 +73,28 @@
             .form__input:focus {
                 background-position: 0 0;
                 color: #444;
-                
             }
             .form__label {
                 position: absolute;
                 bottom: 0;
                 left: 0;
                 padding: 0;
-                width: 0;
+                width: 100%;
                 height: calc(99%);
                 text-align: left;
                 pointer-events: none;
                 color: #999;
 
-                box-sizing: border-box;
-                transition:width .3s;
-            }
+                transition: width 0.5s ;
 
+            }
             .form__label__content {
                 position: absolute;
-                transition: .3s ease-out;
+                transition: all 0.5s ease-in;
             }
-            .form__input:focus ~.form__label .form__label__content,
+            .form__input:focus ~.form__label .form__label-content,
             .form--filled .form__label-content {
-                top: -10px;
-                font-size: .9em;
+     
             }
             .btn {
                 width: 100%;
@@ -148,25 +146,26 @@
     </body>
     <script src="https://ss1.bdstatic.com/5eN1bjq8AAUYm2zgoY3K/r/www/cache/static/protocol/https/jquery/jquery-1.10.2.min_65682a2.js"></script>
     <script>
-    var inp =$(".form__input");
+        var inp=$(".form__input");
         inp.focus(function(){
-            $(this).siblings(".form__label").css({"width":"100%","border-bottom":"solid 2px #1e8bf0"});
-            $(this).siblings(".form__label").children(".form__label__content").css({"top":"-10px","font-size":".9em"});
-        });
+            $(this).siblings('.form__label').css({"width":"100%","border-bottom":"solid 2px #1e8bf0"})
+            $(this).siblings('.form__label').children(".form__label__content").css({"top":"-10px","font-size":"0.8em"})
+        })
         inp.blur(function(){
-            $(".form__label").css({"width":"0"});
+            $(".form__label").css("width","0")
             if($(this).val()){
-                //非空时label维持上移
-                $(this).siblings(".form__label").children(".form__label__content").css({"top":"-10px","font-size":".9em"});
+                // 有值则保持label上移
+                $(this).siblings('.form__label').children(".form__label__content").css({"top":"-10px","font-size":"0.8em"})
             }else{
-                //空时label恢复原样
-                $(this).siblings(".form__label").children(".form__label__content").css({"top":"0","font-size":"1em"});
+                // 无值的时候label在原位
+                $(this).siblings('.form__label').children(".form__label__content").css({"top":"0","font-size":"1em"})
             }
-           
-            if($('#email').val()!=="" && $('#password').val()!==""){
+            console.log($("#email").val(),$("#password").val())
+            if($("#email").val()!==''&&$("#password").val()!==''){
+                console.log(909)
+                // 按钮添加动画
                 $(".btn").addClass("animated infinite pulse");
             }
         })
-
     </script>
-</html>
+    </html>
